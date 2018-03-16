@@ -10,6 +10,7 @@
     tools:context="mg.studio.weatherappdesign.MainActivity">
 
     <TextView
+        android:id="@+id/dayoftheweek"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
@@ -33,7 +34,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/notification" />
+            app:srcCompat="@drawable/yellowpeople" />
 
         <TextView
             android:id="@+id/tv_news"
@@ -84,7 +85,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/rainy_up" />
+                    app:srcCompat="@drawable/rainy1" />
 
                 <TextView
                     android:id="@+id/tv_location"
@@ -113,21 +114,34 @@
                 android:gravity="right">
 
 
+                <ImageButton
+                    android:id="@+id/Refresh"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:onClick="btnRefresh"
+                    android:background="@drawable/refresh"/>
                 <TextView
                     android:id="@+id/temperature_of_the_day"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:gravity="right"
                     android:text="28"
                     android:textColor="@android:color/white"
                     android:textSize="100sp"
                     android:textStyle="bold" />
 
+
+
                 <TextView
+                    android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignRight="@id/temperature_of_the_day"
-                    android:layout_alignTop="@id/temperature_of_the_day"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:gravity="right"
                     android:text="°C"
                     android:textColor="@android:color/white"
@@ -173,13 +187,14 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                app:srcCompat="@drawable/rainy_small" />
+                app:srcCompat="@drawable/rainy1" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:gravity="center"
                 android:text="mon"
+                android:background="@drawable/bluecircle"
                 android:textAllCaps="true"
                 android:textColor="#909090" />
         </LinearLayout>
@@ -194,11 +209,11 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                app:srcCompat="@drawable/partly_sunny_small" />
+                app:srcCompat="@drawable/sunny" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:gravity="center"
                 android:text="tue"
                 android:textAllCaps="true"
@@ -215,11 +230,11 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                app:srcCompat="@drawable/windy_small" />
+                app:srcCompat="@drawable/windy" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:gravity="center"
                 android:text="thu"
                 android:textAllCaps="true"
@@ -236,11 +251,11 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                app:srcCompat="@drawable/sunny_small" />
+                app:srcCompat="@drawable/sunny1" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:gravity="center"
                 android:text="fri"
                 android:textAllCaps="true"
