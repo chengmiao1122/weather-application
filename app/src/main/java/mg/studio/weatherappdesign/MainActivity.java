@@ -14,7 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +28,20 @@ public class MainActivity extends AppCompatActivity {
     public void btnClick(View view) {
         new DownloadUpdate().execute();
     }
+    public void btnRefresh(View view) {new DownloadUpdate().execute();
 
+        //update textview as the day of this week
+        String day = getDayOfWeek();
+        ((TextView) findViewById(R.id.dayoftheweek)).setText(day);
+    }
+
+    public String getDayOfWeek() {
+        long time=System.currentTimeMillis();
+        Date date=new Date(time);
+        SimpleDateFormat format=new SimpleDateFormat("EEEE");
+        String dayOfWeek = format.format(date);
+        return dayOfWeek;
+    }
 
     private class DownloadUpdate extends AsyncTask<String, Void, String> {
 
