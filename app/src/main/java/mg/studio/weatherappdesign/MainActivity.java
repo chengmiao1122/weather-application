@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -18,6 +22,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+
+    public MainActivity() throws UnsupportedEncodingException {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +49,11 @@ public class MainActivity extends AppCompatActivity {
         String dayOfWeek = format.format(date);
         return dayOfWeek;
     }
-
+    String city = java.net.URLEncoder.encode("鍖椾含", "utf-8");
     private class DownloadUpdate extends AsyncTask<String, Void, String> {
-
-
         @Override
         protected String doInBackground(String... strings) {
-            String stringUrl = "http://mpianatra.com/Courses/info.txt";
+            String stringUrl = String.format("https://www.sojson.com/open/api/weather/json.shtml?city=%s",city);
             HttpURLConnection urlConnection = null;
             BufferedReader reader;
 
@@ -57,10 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // Create the request to get the information from the server, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
-
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
-
                 // Read the input stream into a String
                 InputStream inputStream = urlConnection.getInputStream();
                 StringBuffer buffer = new StringBuffer();
@@ -94,10 +97,18 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-        @Override
-        protected void onPostExecute(String temperature) {
+       // @Override
+        protected void onPostExecute(String buffer) {
             //Update the temperature displayed
-            ((TextView) findViewById(R.id.temperature_of_the_day)).setText(temperature);
+            try {
+                JSONObject jsonObject=new JSONObject(buffer);
+                JSONObject jsonObject1=jsonObject.getJSONObject("data");
+                String tem=jsonObject1.getString("wendu");
+                ((TextView) findViewById(R.id.temperature_of_the_day)).setText(tem);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }
